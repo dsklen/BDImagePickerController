@@ -1,6 +1,12 @@
+BDImagePickerController
+=======
+
+**A clone of the UIImagePickerController using the Assets Library Framework allowing for multiple asset selection**
+
 ## Example Usage
 
 ### Presenting the image picker
+
 ```objective-c
 ELCImagePickerController *controller = [[ELCImagePickerController alloc] initImagePicker];
 [controller setDelegate:self];
@@ -10,7 +16,6 @@ ELCImagePickerController *controller = [[ELCImagePickerController alloc] initIma
 
 ### Receiving image picker delegate methods
 
-The ELCImagePickerController will return the select images back to the ELCImagePickerControllerDelegate. The delegate contains to methods very similar to the UIImagePickerControllerDelegate. Instead of returning one dictionary representing a single image the controller sends back an array of similarly structured dictionaries. The two delegate methods are:
 ```objective-c
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker;
@@ -20,7 +25,7 @@ The ELCImagePickerController will return the select images back to the ELCImageP
 
 The MIT License
 
-Copyright (c) 2012 Burnside Digital[Burnside Digital](http://www.burnsidedigital.com/) (formerly ELC Technologies)
+Copyright (c) 2012 [Burnside Digital](http://www.burnsidedigital.com/) (formerly ELC Technologies)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
