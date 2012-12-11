@@ -13,12 +13,6 @@
 @synthesize asset;
 @synthesize parent;
 
-- (id)initWithFrame:(CGRect)frame {
-    if ((self = [super initWithFrame:frame])) {
-        // Initialization code
-    }
-    return self;
-}
 
 -(id)initWithAsset:(ALAsset*)_asset {
 	
@@ -43,22 +37,13 @@
 	return self;	
 }
 
--(void)toggleSelection {
-    
+-(void)toggleSelection;
+{    
 	overlayView.hidden = !overlayView.hidden;
-    
-//    if([(ELCAssetTablePicker*)self.parent totalSelectedAssets] >= 10) {
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Maximum Reached" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//		[alert show];
-//		[alert release];	
-//
-//        [(ELCAssetTablePicker*)self.parent doneAction:nil];
-//    }
 }
 
--(BOOL)selected {
-	
+-(BOOL)selected;
+{	
 	return !overlayView.hidden;
 }
 
