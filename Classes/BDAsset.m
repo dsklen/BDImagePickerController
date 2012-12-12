@@ -10,54 +10,48 @@
 
 @implementation BDAsset
 
-@synthesize asset;
+@synthesize asset = _asset;
 @synthesize parent;
 
 
--(id)initWithAsset:(ALAsset*)_asset {
-	
-	if (self = [super initWithFrame:CGRectMake(0, 0, 0, 0)]) {
+- (id)initWithAsset:(ALAsset *)asset;
+{	
+    self = [super initWithFrame:CGRectZero];
+    if ( self )
+        {
+		self.asset = asset;
 		
-		self.asset = _asset;
-		
-		CGRect viewFrames = CGRectMake(0, 0, 75, 75);
+		CGRect viewFrames = CGRectMake( 0.0f, 0.0f, 75.0f, 75.0f );
 		
 		UIImageView *assetImageView = [[UIImageView alloc] initWithFrame:viewFrames];
 		[assetImageView setContentMode:UIViewContentModeScaleToFill];
 		[assetImageView setImage:[UIImage imageWithCGImage:[self.asset thumbnail]]];
 		[self addSubview:assetImageView];
-		[assetImageView release];
 		
-		overlayView = [[UIImageView alloc] initWithFrame:viewFrames];
-		[overlayView setImage:[UIImage imageNamed:@"Overlay.png"]];
-		[overlayView setHidden:YES];
-		[self addSubview:overlayView];
+		self.overlayView = [[UIImageView alloc] initWithFrame:viewFrames];
+		self.overlayView.image = [UIImage imageNamed:@"Overlay.png"];
+		self.overlayView.hidden = YES;
+		[self addSubview:self.overlayView];
     }
     
 	return self;	
 }
 
--(void)toggleSelection;
+- (void)toggleSelection;
 {    
-	overlayView.hidden = !overlayView.hidden;
+	self.overlayView.hidden = !self.overlayView.hidden;
 }
 
--(BOOL)selected;
+- (BOOL)selected;
 {	
-	return !overlayView.hidden;
+	return !self.overlayView.hidden;
 }
 
--(void)setSelected:(BOOL)_selected {
-    
-	[overlayView setHidden:!_selected];
-}
-
-- (void)dealloc 
+- (void)setSelected:(BOOL)selected;
 {    
-    self.asset = nil;
-	[overlayView release];
-    [super dealloc];
+	[self.overlayView setHidden:!selected];
 }
+
 
 @end
 

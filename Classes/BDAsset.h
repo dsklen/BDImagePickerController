@@ -9,17 +9,14 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface BDAsset : UIView {
-	ALAsset *asset;
-	UIImageView *overlayView;
-	BOOL selected;
-	id parent;
-}
+@interface BDAsset : UIView
 
-@property (nonatomic, retain) ALAsset *asset;
-@property (nonatomic, assign) id parent;
+@property (nonatomic, strong) ALAsset *asset;
+@property (nonatomic, unsafe_unretained) id parent;
+@property (nonatomic, strong) UIImageView *overlayView;
+@property (assign) BOOL selected;
 
--(id)initWithAsset:(ALAsset*)_asset;
--(BOOL)selected;
+- (id)initWithAsset:(ALAsset *)asset;
+- (BOOL)selected;
 
 @end

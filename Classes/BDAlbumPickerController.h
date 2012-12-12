@@ -8,19 +8,13 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface BDAlbumPickerController : UITableViewController {
-	
-	NSMutableArray *assetGroups;
-	NSOperationQueue *queue;
-	id parent;
-    
-    ALAssetsLibrary *library;
-}
+@interface BDAlbumPickerController : UITableViewController
 
-@property (nonatomic, assign) id parent;
-@property (nonatomic, retain) NSMutableArray *assetGroups;
+@property (nonatomic, strong) NSMutableArray *assetGroupsArray;
+@property (nonatomic, strong) NSOperationQueue *queue;
+@property (nonatomic, strong) ALAssetsLibrary *library;
 
--(void)selectedAssets:(NSArray*)_assets;
+- (void)selectedAssets:(NSArray *)assets;
 
 @end
 

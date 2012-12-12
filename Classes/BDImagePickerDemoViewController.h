@@ -9,14 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BDImagePickerController.h"
 
-@interface BDImagePickerDemoViewController : UIViewController <ELCImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate> {
+@interface BDImagePickerDemoViewController : UIViewController <BDImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
-	IBOutlet UIScrollView *scrollview;
-}
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollview;
-
--(IBAction)launchController;
+- (IBAction)launchController:(id)sender;
 
 @end
-

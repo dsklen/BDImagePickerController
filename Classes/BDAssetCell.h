@@ -9,13 +9,10 @@
 
 
 @interface BDAssetCell : UITableViewCell
-{
-	NSArray *rowAssets;
-}
 
--(id)initWithAssets:(NSArray*)_assets reuseIdentifier:(NSString*)_identifier;
--(void)setAssets:(NSArray*)_assets;
+- (id)initWithAssets:(NSArray *)assets reuseIdentifier:(NSString *)identifier;
+- (void)setAssets:(NSArray *)assets;
 
-@property (nonatomic,retain) NSArray *rowAssets;
+@property (strong, nonatomic) NSArray *rowAssets;
 
 @end

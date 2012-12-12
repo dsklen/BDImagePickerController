@@ -12,8 +12,8 @@
 
 @interface BDAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet BDImagePickerDemoViewController *viewController;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) BDImagePickerDemoViewController *viewController;
 
 @end
 

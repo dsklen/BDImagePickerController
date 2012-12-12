@@ -7,62 +7,69 @@
 //
 
 #import "BDImagePickerController.h"
-#import "ELCAsset.h"
-#import "ELCAssetCell.h"
-#import "ELCAssetTablePicker.h"
+#import "BDAsset.h"
+#import "BDAssetCell.h"
+#import "BDAssetTablePicker.h"
 #import "BDAlbumPickerController.h"
 
 @implementation BDImagePickerController
 
-@synthesize delegate;
 
--(void)cancelImagePicker {
-	if([delegate respondsToSelector:@selector(elcImagePickerControllerDidCancel:)]) {
-		[delegate performSelector:@selector(elcImagePickerControllerDidCancel:) withObject:self];
-	}
+#pragma mark - Properties
+
+@synthesize pickerDelegate = _pickerDelegate;
+
+#pragma mark - API
+
+- (void)cancelImagePicker;
+{
+//	if ( [self.pickerDelegate respondsToSelector:@selector(imagePickerControllerDidCancel:)] )
+//		[self.pickerDelegate imagePickerControllerDidCancel:self];
 }
-
+ 
 -(void)selectedAssets:(NSArray*)_assets {
 
-	NSMutableArray *returnArray = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *returnArray = [[NSMutableArray alloc] init];
 	
-	for(ALAsset *asset in _assets) {
-
+	for( ALAsset *asset in _assets )
+    {
 		NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
 		[workingDictionary setObject:[asset valueForProperty:ALAssetPropertyType] forKey:@"UIImagePickerControllerMediaType"];
         [workingDictionary setObject:[UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]] forKey:@"UIImagePickerControllerOriginalImage"];
 		[workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:@"UIImagePickerControllerReferenceURL"];
 		
 		[returnArray addObject:workingDictionary];
-		
-		[workingDictionary release];	
-	}
+    }
 	
     [self popToRootViewControllerAnimated:NO];
     [[self parentViewController] dismissModalViewControllerAnimated:YES];
     
-	if([delegate respondsToSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:)]) {
-		[delegate performSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:) withObject:self withObject:[NSArray arrayWithArray:returnArray]];
+	if([self.delegate respondsToSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:)]) {
+		[self.delegate performSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:) withObject:self withObject:[NSArray arrayWithArray:returnArray]];
 	}
 }
 
-#pragma mark -
-#pragma mark Memory management
+
+#pragma mark - View Lifecycle
+
+- (id)initWithRootViewController:(UIViewController *)rootViewController delegate:(id<BDImagePickerControllerDelegate>)pickerDelegate;
+{
+    self = [super initWithRootViewController:rootViewController];
+    if ( self )
+    {
+        _pickerDelegate = pickerDelegate;
+    }
+    return self;
+}
+
+
+#pragma mark - Memory management
 
 - (void)didReceiveMemoryWarning {    
-    NSLog(@"ELC Image Picker received memory warning.");
+    NSLog(@"ELC Image Picker received m emory warning.");
     
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
-
-- (void)dealloc {
-    NSLog(@"deallocing ELCImagePickerController");
-    [super dealloc];
-}
 
 @end

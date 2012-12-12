@@ -10,47 +10,39 @@
 
 @implementation BDAssetCell
 
-@synthesize rowAssets;
+@synthesize rowAssets = _rowAssets;
 
--(id)initWithAssets:(NSArray*)_assets reuseIdentifier:(NSString*)_identifier {
-    
-	if(self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier]) {
-        
-		self.rowAssets = _assets;
-	}
-	
+- (id)initWithAssets:(NSArray *)assets reuseIdentifier:(NSString *)identifier;
+{
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    if ( self )
+        _rowAssets = assets;
+
 	return self;
 }
 
--(void)setAssets:(NSArray*)_assets {
-	
+- (void)setAssets:(NSArray *)assets;
+{	
 	for(UIView *view in [self subviews]) 
     {		
 		[view removeFromSuperview];
 	}
 	
-	self.rowAssets = _assets;
+	self.rowAssets = assets;
 }
 
--(void)layoutSubviews {
-    
-	CGRect frame = CGRectMake(4, 2, 75, 75);
+- (void)layoutSubviews;
+{    
+	CGRect frame = CGRectMake( 4.0f, 2.0f, 75.0f, 75.0f );
 	
-	for(BDAsset *elcAsset in self.rowAssets) {
-		
+	for ( BDAsset *elcAsset in self.rowAssets )
+    {
 		[elcAsset setFrame:frame];
-		[elcAsset addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:elcAsset action:@selector(toggleSelection)] autorelease]];
+		[elcAsset addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:elcAsset action:@selector(toggleSelection)]];
 		[self addSubview:elcAsset];
 		
 		frame.origin.x = frame.origin.x + frame.size.width + 4;
 	}
-}
-
--(void)dealloc 
-{
-	[rowAssets release];
-    
-	[super dealloc];
 }
 
 @end

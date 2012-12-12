@@ -13,32 +13,36 @@
 
 @implementation BDImagePickerDemoViewController
 
-@synthesize scrollview;
 
--(IBAction)launchController {
+#pragma mark - Properties
+
+@synthesize scrollView = _scrollView;
+
+
+#pragma mark - API
+
+- (IBAction)launchController:(id)sender;
+{
+    BDAlbumPickerController *albumController = [[BDAlbumPickerController alloc] initWithNibName:@"BDAlbumPickerController" bundle:[NSBundle mainBundle]];    
 	
-    BDAlbumPickerController *albumController = [[BDAlbumPickerController alloc] initWithNibName:@"ELCAlbumPickerController" bundle:[NSBundle mainBundle]];    
-	BDImagePickerController *elcPicker = [[BDImagePickerController alloc] initWithRootViewController:albumController];
-    [albumController setParent:elcPicker];
-	[elcPicker setDelegate:self];
+    BDImagePickerController *imagePicker = [[BDImagePickerController alloc] initWithRootViewController:albumController delegate:self];
     
-    BDAppDelegate *app = (BDAppDelegate *)[[UIApplication sharedApplication] delegate];
-	[app.viewController presentModalViewController:elcPicker animated:YES];
-    [elcPicker release];
-    [albumController release];
+	[self presentModalViewController:imagePicker animated:YES];
 }
 
-#pragma mark ELCImagePickerControllerDelegate Methods
 
-- (void)elcImagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {
-	
+#pragma mark - BDImagePickerControllerDelegate Methods
+
+- (void)imagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
+{	
 	[self dismissModalViewControllerAnimated:YES];
 	
-    for (UIView *v in [scrollview subviews]) {
-        [v removeFromSuperview];
+    for ( UIView *viewToRemove in [self.scrollView subviews] )
+    {
+        [viewToRemove removeFromSuperview];
     }
     
-	CGRect workingFrame = scrollview.frame;
+	CGRect workingFrame = self.scrollView.frame;
 	workingFrame.origin.x = 0;
 	
 	for(NSDictionary *dict in info) {
@@ -47,36 +51,18 @@
 		[imageview setContentMode:UIViewContentModeScaleAspectFit];
 		imageview.frame = workingFrame;
 		
-		[scrollview addSubview:imageview];
-		[imageview release];
+		[self.scrollView addSubview:imageview];
 		
 		workingFrame.origin.x = workingFrame.origin.x + workingFrame.size.width;
 	}
 	
-	[scrollview setPagingEnabled:YES];
-	[scrollview setContentSize:CGSizeMake(workingFrame.origin.x, workingFrame.size.height)];
+	[self.scrollView setPagingEnabled:YES];
+	[self.scrollView setContentSize:CGSizeMake(workingFrame.origin.x, workingFrame.size.height)];
 }
 
-- (void)elcImagePickerControllerDidCancel:(BDImagePickerController *)picker {
-
+- (void)imagePickerControllerDidCancel:(BDImagePickerController *)picker;
+{
 	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 @end

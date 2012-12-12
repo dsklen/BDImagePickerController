@@ -8,22 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BDImagePickerController : UINavigationController {
+@protocol BDImagePickerControllerDelegate;
 
-	id delegate;
-}
 
-@property (nonatomic, assign) id delegate;
+@interface BDImagePickerController : UINavigationController <UINavigationControllerDelegate>
 
--(void)selectedAssets:(NSArray*)_assets;
--(void)cancelImagePicker;
+@property (unsafe_unretained, nonatomic) id<BDImagePickerControllerDelegate> pickerDelegate;
+
+- (id)initWithRootViewController:(UIViewController *)rootViewController delegate:(id<BDImagePickerControllerDelegate>)pickerDelegate;
+- (void)selectedAssets:(NSArray *)assets;
+- (void)cancelImagePicker;
 
 @end
 
-@protocol ELCImagePickerControllerDelegate
 
-- (void)elcImagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
-- (void)elcImagePickerControllerDidCancel:(BDImagePickerController *)picker;
+@protocol BDImagePickerControllerDelegate
+
+@required
+- (void)imagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
+- (void)imagePickerControllerDidCancel:(BDImagePickerController *)picker;
 
 @end
 
