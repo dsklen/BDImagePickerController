@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ELCImagePickerController : UINavigationController {
+@interface BDImagePickerController : UINavigationController {
 
 	id delegate;
 }
@@ -22,8 +22,8 @@
 
 @protocol ELCImagePickerControllerDelegate
 
-- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
-- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker;
+- (void)elcImagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
+- (void)elcImagePickerControllerDidCancel:(BDImagePickerController *)picker;
 
 @end
 

@@ -2,14 +2,14 @@
 //  Asset.h
 //
 //  Created by Matt Tuzzolo on 2/15/11.
-//  Copyright 2011 ELC Technologies. All rights reserved.
+//  Copyright 2012 Burnside Digital. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface ELCAsset : UIView {
+@interface BDAsset : UIView {
 	ALAsset *asset;
 	UIImageView *overlayView;
 	BOOL selected;

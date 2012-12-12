@@ -2,14 +2,14 @@
 //  AlbumPickerController.m
 //
 //  Created by Matt Tuzzolo on 2/15/11.
-//  Copyright 2011 ELC Technologies. All rights reserved.
+//  Copyright 2012 Burnside Digital. All rights reserved.
 //
 
-#import "ELCAlbumPickerController.h"
-#import "ELCImagePickerController.h"
-#import "ELCAssetTablePicker.h"
+#import "BDAlbumPickerController.h"
+#import "BDImagePickerController.h"
+#import "BDAssetTablePicker.h"
 
-@implementation ELCAlbumPickerController
+@implementation BDAlbumPickerController
 
 @synthesize parent, assetGroups;
 
@@ -77,7 +77,7 @@
 
 -(void)selectedAssets:(NSArray*)_assets {
 	
-	[(ELCImagePickerController*)parent selectedAssets:_assets];
+	[(BDImagePickerController*)parent selectedAssets:_assets];
 }
 
 #pragma mark -
@@ -122,7 +122,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	ELCAssetTablePicker *picker = [[ELCAssetTablePicker alloc] initWithNibName:@"ELCAssetTablePicker" bundle:[NSBundle mainBundle]];
+	BDAssetTablePicker *picker = [[BDAssetTablePicker alloc] initWithNibName:@"ELCAssetTablePicker" bundle:[NSBundle mainBundle]];
 	picker.parent = self;
 
     // Move me    

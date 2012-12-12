@@ -6,13 +6,13 @@
 //  Copyright 2010 ELC Technologies. All rights reserved.
 //
 
-#import "ELCImagePickerController.h"
+#import "BDImagePickerController.h"
 #import "ELCAsset.h"
 #import "ELCAssetCell.h"
 #import "ELCAssetTablePicker.h"
-#import "ELCAlbumPickerController.h"
+#import "BDAlbumPickerController.h"
 
-@implementation ELCImagePickerController
+@implementation BDImagePickerController
 
 @synthesize delegate;
 

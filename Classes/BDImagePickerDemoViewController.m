@@ -6,23 +6,23 @@
 //  Copyright 2010 ELC Technologies. All rights reserved.
 //
 
-#import "ELCImagePickerDemoAppDelegate.h"
-#import "ELCImagePickerDemoViewController.h"
-#import "ELCImagePickerController.h"
-#import "ELCAlbumPickerController.h"
+#import "BDAppDelegate.h"
+#import "BDImagePickerDemoViewController.h"
+#import "BDImagePickerController.h"
+#import "BDAlbumPickerController.h"
 
-@implementation ELCImagePickerDemoViewController
+@implementation BDImagePickerDemoViewController
 
 @synthesize scrollview;
 
 -(IBAction)launchController {
 	
-    ELCAlbumPickerController *albumController = [[ELCAlbumPickerController alloc] initWithNibName:@"ELCAlbumPickerController" bundle:[NSBundle mainBundle]];    
-	ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] initWithRootViewController:albumController];
+    BDAlbumPickerController *albumController = [[BDAlbumPickerController alloc] initWithNibName:@"ELCAlbumPickerController" bundle:[NSBundle mainBundle]];    
+	BDImagePickerController *elcPicker = [[BDImagePickerController alloc] initWithRootViewController:albumController];
     [albumController setParent:elcPicker];
 	[elcPicker setDelegate:self];
     
-    ELCImagePickerDemoAppDelegate *app = (ELCImagePickerDemoAppDelegate *)[[UIApplication sharedApplication] delegate];
+    BDAppDelegate *app = (BDAppDelegate *)[[UIApplication sharedApplication] delegate];
 	[app.viewController presentModalViewController:elcPicker animated:YES];
     [elcPicker release];
     [albumController release];
@@ -30,7 +30,7 @@
 
 #pragma mark ELCImagePickerControllerDelegate Methods
 
-- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {
+- (void)elcImagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {
 	
 	[self dismissModalViewControllerAnimated:YES];
 	
@@ -57,7 +57,7 @@
 	[scrollview setContentSize:CGSizeMake(workingFrame.origin.x, workingFrame.size.height)];
 }
 
-- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
+- (void)elcImagePickerControllerDidCancel:(BDImagePickerController *)picker {
 
 	[self dismissModalViewControllerAnimated:YES];
 }

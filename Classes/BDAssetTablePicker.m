@@ -2,16 +2,16 @@
 //  AssetTablePicker.m
 //
 //  Created by Matt Tuzzolo on 2/15/11.
-//  Copyright 2011 ELC Technologies. All rights reserved.
+//  Copyright 2012 Burnside Digital. All rights reserved.
 //
 
-#import "ELCAssetTablePicker.h"
-#import "ELCAssetCell.h"
-#import "ELCAsset.h"
-#import "ELCAlbumPickerController.h"
+#import "BDAssetTablePicker.h"
+#import "BDAssetCell.h"
+#import "BDAsset.h"
+#import "BDAlbumPickerController.h"
 
 
-@implementation ELCAssetTablePicker
+@implementation BDAssetTablePicker
 
 @synthesize parent;
 @synthesize selectedAssetsLabel;
@@ -49,7 +49,7 @@
              return;
          }
          
-         ELCAsset *elcAsset = [[[ELCAsset alloc] initWithAsset:result] autorelease];
+         BDAsset *elcAsset = [[[BDAsset alloc] initWithAsset:result] autorelease];
          [elcAsset setParent:self];
          [self.elcAssets addObject:elcAsset];
      }];    
@@ -66,7 +66,7 @@
 	
 	NSMutableArray *selectedAssetsImages = [[[NSMutableArray alloc] init] autorelease];
 	    
-	for(ELCAsset *elcAsset in self.elcAssets) 
+	for(BDAsset *elcAsset in self.elcAssets) 
     {		
 		if([elcAsset selected]) {
 			
@@ -74,7 +74,7 @@
 		}
 	}
         
-    [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
+    [(BDAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
 }
 
 #pragma mark UITableViewDataSource Delegate Methods
@@ -133,11 +133,11 @@
     
     static NSString *CellIdentifier = @"Cell";
         
-    ELCAssetCell *cell = (ELCAssetCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BDAssetCell *cell = (BDAssetCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) 
     {		        
-        cell = [[[ELCAssetCell alloc] initWithAssets:[self assetsForIndexPath:indexPath] reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[BDAssetCell alloc] initWithAssets:[self assetsForIndexPath:indexPath] reuseIdentifier:CellIdentifier] autorelease];
     }	
 	else 
     {		
@@ -156,7 +156,7 @@
     
     int count = 0;
     
-    for(ELCAsset *asset in self.elcAssets) 
+    for(BDAsset *asset in self.elcAssets) 
     {
 		if([asset selected]) 
         {            

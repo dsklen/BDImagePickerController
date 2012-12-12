@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ELCImagePickerController.h"
+#import "BDImagePickerController.h"
 
-@interface ELCImagePickerDemoViewController : UIViewController <ELCImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate> {
+@interface BDImagePickerDemoViewController : UIViewController <ELCImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate> {
 
 	IBOutlet UIScrollView *scrollview;
 }

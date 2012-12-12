@@ -6,22 +6,23 @@
 //  Copyright 2010 ELC Technologies. All rights reserved.
 //
 
-#import "ELCImagePickerDemoAppDelegate.h"
-#import "ELCImagePickerDemoViewController.h"
+#import "BDAppDelegate.h"
+#import "BDImagePickerDemoViewController.h"
 
-@implementation ELCImagePickerDemoAppDelegate
-
-@synthesize window;
-@synthesize viewController;
+@implementation BDAppDelegate
 
 
-#pragma mark -
-#pragma mark Application lifecycle
+#pragma mark - Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
-{
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
+{    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    BDImagePickerDemoViewController *mainViewController = [[BDImagePickerDemoViewController alloc] initWithNibName:@"BDImagePickerDemoViewController" bundle:nil];
+    self.viewController = mainViewController;
+    
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
 
     return YES;
 }
