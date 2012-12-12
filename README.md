@@ -8,16 +8,16 @@ BDImagePickerController
 ### Presenting the image picker
 
 ```objective-c
-BDAlbumPickerController *albumController = [[BDAlbumPickerController alloc] initWithNibName:@"BDAlbumPickerController" bundle:[NSBundle mainBundle]];
-BDImagePickerController *imagePicker = [[BDImagePickerController alloc] initWithRootViewController:albumController delegate:self];
+BDImagePickerController *imagePicker = [[BDImagePickerController alloc] initWithDelegate:self];
+    
 [self presentModalViewController:imagePicker animated:YES];
 ```
 
 ### Receiving image picker delegate methods
 
 ```objective-c
-- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
-- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker;
+- (void)imagePickerController:(BDImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info;
+- (void)imagePickerControllerDidCancel:(BDImagePickerController *)picker;
 ```
 
 ## License
