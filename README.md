@@ -8,10 +8,9 @@ BDImagePickerController
 ### Presenting the image picker
 
 ```objective-c
-ELCImagePickerController *controller = [[ELCImagePickerController alloc] initImagePicker];
-[controller setDelegate:self];
-[self presentModalViewController:controller animated:YES];
-[controller release];
+BDAlbumPickerController *albumController = [[BDAlbumPickerController alloc] initWithNibName:@"BDAlbumPickerController" bundle:[NSBundle mainBundle]];
+BDImagePickerController *imagePicker = [[BDImagePickerController alloc] initWithRootViewController:albumController delegate:self];
+[self presentModalViewController:imagePicker animated:YES];
 ```
 
 ### Receiving image picker delegate methods
